@@ -10,9 +10,6 @@ dependencies {
     api "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
     api "com.google.android.material:material:$material_version"
     api "androidx.dynamicanimation:dynamicanimation:$dynamic_animation_version"
-    api "androidx.viewpager2:viewpager2:$view_pager_2_version"
-    api "com.airbnb.android:lottie:$lottie_version"
-    api "com.github.GuilhermeMBisotto:AnchorBindingAdapter:$anchor_binding_adapter_version"
 
     /* DATA */
     api project(':data')
@@ -25,4 +22,7 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
+
+    /* ROBOELECTRIC */
+    testImplementation "org.robolectric:robolectric:$robolectric_version"
 }

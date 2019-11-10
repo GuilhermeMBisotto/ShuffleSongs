@@ -35,6 +35,7 @@ ext {
     mockito_kotlin_version = '2.1.0'
     mockito_inline_version = '2.21.0'
     core_testing_version = '1.1.1'
+    robolectric_version = '4.3'
 
     ktlint_version = '0.34.0'
 
