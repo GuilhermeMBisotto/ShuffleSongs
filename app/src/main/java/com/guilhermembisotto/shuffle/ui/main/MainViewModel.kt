@@ -24,11 +24,7 @@ class MainViewModel(
     }
 
     private val _songs = MutableLiveData<List<Song>?>()
-    val songs = Transformations.map(_songs) {
-        it?.filter { song ->
-            song.wrapperType != Song.Companion.WrapperType.ARTIST.type
-        }
-    }
+    val songs = Transformations.map(_songs) { it }
 
     private val _loading = Transformations.map(songs) { !it.isNullOrEmpty() }
     val loading = Transformations.map(_loading) { it }
@@ -39,7 +35,9 @@ class MainViewModel(
     suspend fun getSongsFromApi() {
         try {
             val response = songsRepository.getSongsByArtistId(artistsId)
-            _songs.postValue(response.content?.results)
+            _songs.postValue(response.content?.results?.filter { song ->
+                song.wrapperType != Song.Companion.WrapperType.ARTIST.type
+            })
         } catch (e: Exception) {
             _errorMessage.postValue(e.cause?.message)
         }

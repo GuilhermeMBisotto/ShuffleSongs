@@ -25,9 +25,7 @@ class SongsRepositoryImplUnitTest {
     private val songsRemoteDataSource: SongsDataSource.Remote = mock()
 
     private val ARTISTS_FAKE_ID = arrayListOf("0", "0", "0", "0", "0")
-    private val ARTISTS_ID = arrayListOf(
-        "1"
-    )
+    private val ARTISTS_ID = arrayListOf("1")
 
     @Before
     fun setUp() {
