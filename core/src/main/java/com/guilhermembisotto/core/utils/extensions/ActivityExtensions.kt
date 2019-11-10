@@ -5,17 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.transition.TransitionManager
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.net.toUri
-import androidx.core.util.Pair
 import androidx.databinding.OnRebindCallback
 import androidx.databinding.ViewDataBinding
 import com.guilhermembisotto.core.R
-import com.guilhermembisotto.core.utils.ActivityBindingProperty
+import com.guilhermembisotto.core.utils.bindingproperties.ActivityBindingProperty
 
 fun <T : ViewDataBinding> activityBinding(@LayoutRes resId: Int) =
     ActivityBindingProperty<T>(resId)
@@ -38,13 +34,6 @@ inline fun <reified T : Any> newIntent(
     return intent
 }
 
-inline fun <reified T : Any> Context.launchActivity(
-    options: Bundle? = null,
-    noinline init: Intent.() -> Unit = {}
-) {
-    startActivity(newIntent<T>(this, init), options)
-}
-
 inline fun <reified T : Any> Activity.launchActivity(
     requestCode: Int = -1,
     options: Bundle? = null,
@@ -53,55 +42,31 @@ inline fun <reified T : Any> Activity.launchActivity(
     startActivityForResult(newIntent<T>(this, init), requestCode, options)
 }
 
-inline fun <reified T : Any> Activity.launchActivityForSharedElements(
-    args: Bundle? = null,
-    vararg pairs: Pair<View, String>,
-    noinline init: Intent.() -> Unit = {}
-) {
-    val intent = newIntent<T>(this, init)
-    args?.run {
-        intent.putExtras(args)
-    }
-
-    val options: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
-        this,
-        *pairs
-    )
-
-    try {
-        startActivity(intent, options.toBundle())
-    } catch (e: Exception) {
-        startActivity(intent)
-    }
-}
-
-fun Activity.openLink(url: String) {
-    startActivity(
-        Intent(
-            Intent.ACTION_VIEW,
-            (url.toUri())
-        )
-    )
-}
-
 fun Activity.createSimpleDialog(
     title: String = "",
     message: String = "",
     cancelable: Boolean = true,
     positiveButtonText: String = "",
     positiveButtonAction: (() -> Unit)? = null,
+    neutralButtonText: String = "",
+    neutralButtonAction: (() -> Unit)? = null,
     negativeButtonText: String = "",
     negativeButtonAction: (() -> Unit)? = null
 
 ): AlertDialog {
     val dialog =
-        AlertDialog.Builder(this, R.style.ThemeOverlay_MaterialComponents_Dialog)
+        AlertDialog.Builder(this, R.style.AppTheme_Dialog)
             .setTitle(title)
             .setMessage(message)
 
     positiveButtonAction?.run {
         dialog.setPositiveButton(positiveButtonText) { _, _ ->
             positiveButtonAction()
+        }
+    }
+    neutralButtonAction?.run {
+        dialog.setNeutralButton(neutralButtonText) { _, _ ->
+            neutralButtonAction()
         }
     }
     negativeButtonAction?.run {
