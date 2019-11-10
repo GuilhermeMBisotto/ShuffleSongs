@@ -6,7 +6,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     /* DESIGN */
-    api project(':ui')
+    api "androidx.appcompat:appcompat:$appcompat_version"
+    api "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+    api "com.google.android.material:material:$material_version"
+    api "androidx.dynamicanimation:dynamicanimation:$dynamic_animation_version"
 
     /* DATA */
     api project(':data')
@@ -19,4 +22,7 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
+
+    /* ROBOELECTRIC */
+    testImplementation "org.robolectric:robolectric:$robolectric_version"
 }

@@ -1,2 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.guilhermembisotto.data" />
+    package="com.guilhermembisotto.data">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+</manifest>
