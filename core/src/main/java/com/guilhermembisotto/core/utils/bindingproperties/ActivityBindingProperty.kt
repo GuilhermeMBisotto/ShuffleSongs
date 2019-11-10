@@ -1,4 +1,4 @@
-package com.guilhermembisotto.core.utils
+package com.guilhermembisotto.core.utils.bindingproperties
 
 import android.app.Activity
 import androidx.annotation.LayoutRes

@@ -9,11 +9,6 @@
         <variable
             name="obj"
             type="com.guilhermembisotto.data.songs.models.Song" />
-
-        <variable
-            name="adapter"
-            type="com.guilhermembisotto.shuffle.ui.main.adapter.SongsAdapter" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
