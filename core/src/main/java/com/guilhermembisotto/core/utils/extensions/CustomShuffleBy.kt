@@ -6,6 +6,7 @@ private class CustomShuffleBy<T, K> {
 
     private val shuffledList = Collections.synchronizedList(mutableListOf<T>())
     private val originalList = Collections.synchronizedList(mutableListOf<T>())
+    private val originalListCopy = Collections.synchronizedList(mutableListOf<T>())
     private var originalListSize = 0
     private var countOfTries = 0
     private lateinit var keySelectorShuffleBy: (T) -> K
@@ -14,11 +15,33 @@ private class CustomShuffleBy<T, K> {
         shuffledList.clear()
         originalListSize = list.size
         originalList.addAll(list)
+        originalListCopy.addAll(list)
         keySelectorShuffleBy = shuffleBy
 
         recursiveShuffled()
 
+        while (shuffledList == originalListCopy || inSequence()) {
+
+            shuffledList.clear()
+            originalList.clear()
+            originalList.addAll(originalListCopy)
+
+            recursiveShuffled()
+        }
+
         return shuffledList
+    }
+
+    private fun inSequence(): Boolean {
+        var sequence = false
+
+        for (j in 1 until shuffledList.size) {
+            if (keySelectorShuffleBy(shuffledList[j]) == keySelectorShuffleBy(shuffledList[j - 1])) {
+                sequence = true
+            }
+        }
+
+        return sequence
     }
 
     private fun recursiveShuffled() {
