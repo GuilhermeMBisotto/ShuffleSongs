@@ -61,7 +61,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/frameMain_appbar"
             bind:data="@{viewModel.songs}"
-            tools:itemCount="4"
+            tools:itemCount="8"
             tools:listitem="@layout/item_song"
             tools:paddingTop="@dimen/spacing_xxlarge" />
 

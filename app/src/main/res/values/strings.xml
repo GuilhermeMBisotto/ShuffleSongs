@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Shuffle Songs</string>
-    <string name="action_settings">Settings</string>
     <string name="track_name">%1$s (%2$s)</string>
+    <string name="try_again">Tentar novamente</string>
+    <string name="ok">Okay</string>
+    <string name="error_dialog_title">Error…</string>
 </resources>
