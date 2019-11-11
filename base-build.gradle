@@ -39,4 +39,8 @@ android {
     androidExtensions {
         experimental = true
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
+    }
 }
