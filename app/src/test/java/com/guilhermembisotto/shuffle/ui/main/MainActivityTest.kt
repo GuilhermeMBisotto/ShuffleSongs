@@ -12,6 +12,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.test.AutoCloseKoinTest
 import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoRule
 import org.robolectric.Robolectric
@@ -21,7 +22,7 @@ import org.robolectric.annotation.Config
 
 @Config(sdk = [Build.VERSION_CODES.O_MR1])
 @RunWith(RobolectricTestRunner::class)
-class MainActivityTest {
+class MainActivityTest : AutoCloseKoinTest() {
 
     @get:Rule
     val taskExecutorRule = InstantTaskExecutorRule()
